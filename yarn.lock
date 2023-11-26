@@ -5226,6 +5226,11 @@ react-fast-marquee@^1.6.2:
   resolved "https://registry.npmjs.org/react-fast-marquee/-/react-fast-marquee-1.6.2.tgz"
   integrity sha512-bXUuW1r+Yzd8ZjsPmMDy8WJMubHAZd/7n0W/IzUQHtd0iBfxWohP6hzCFnEHWMCOtC9wxSAq/BiEnig4kdI2Vw==
 
+react-hook-form@^7.48.2:
+  version "7.48.2"
+  resolved "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.48.2.tgz"
+  integrity sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==
+
 react-hot-toast@^2.4.1:
   version "2.4.1"
   resolved "https://registry.npmjs.org/react-hot-toast/-/react-hot-toast-2.4.1.tgz"

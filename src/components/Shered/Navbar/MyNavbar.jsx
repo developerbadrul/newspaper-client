@@ -1,9 +1,13 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css"
+import useAuth from "../../../Hooks/useAuth";
+
 
 
 const MyNavbar = () => {
+ const {fakeInfo} = useAuth();
+ console.log(fakeInfo);
   return (
     <Navbar fluid rounded>
       <Navbar.Brand href="https://flowbite-react.com">
