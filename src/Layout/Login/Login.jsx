@@ -2,17 +2,23 @@ import { Button, Label, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { IoIosHome } from "react-icons/io";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
+    const {singInWithPassword} = useAuth();
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-
-    const onSubmit = (data) => console.log(data);
-
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    const onSubmit = (logingData) => {
+        singInWithPassword(logingData.email, logingData.password)
+        .then(result => console.log(result.user))
+        .catch(err =>console.log(err.message))
+    };
+
 
     return (
         <div className="my-8">

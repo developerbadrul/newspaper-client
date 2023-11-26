@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css"
 import useAuth from "../../../Hooks/useAuth";
@@ -6,8 +6,8 @@ import useAuth from "../../../Hooks/useAuth";
 
 
 const MyNavbar = () => {
- const {fakeInfo} = useAuth();
- console.log(fakeInfo);
+  const { currentUser, logOut } = useAuth();
+  // const hangle
   return (
     <Navbar fluid rounded>
       <Navbar.Brand href="https://flowbite-react.com">
@@ -45,6 +45,7 @@ const MyNavbar = () => {
         <NavLink to="plans">Plans</NavLink>
         <NavLink to="all-publisher">All Publisher</NavLink>
         <NavLink to="login">Login</NavLink>
+        {currentUser && <Button color="failure" onClick={logOut}>LoginOut</Button>}
         {/* <Navbar.Link href="#">About</Navbar.Link>
         <Navbar.Link href="#">Services</Navbar.Link>
         <Navbar.Link href="#">Pricing</Navbar.Link>

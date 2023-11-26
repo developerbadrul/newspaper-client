@@ -15,7 +15,10 @@ const Register = () => {
         watch,
     } = useForm();
 
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
     const onSubmit = (registerUserInfo) => {
+        console.log(registerUserInfo);
         createUserWithPassword(registerUserInfo.email, registerUserInfo.password)
             .then(result => {
                 updateProfile(auth.currentUser,{
@@ -26,7 +29,6 @@ const Register = () => {
             .catch(err => console.log(err.message))
     };
 
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 
     return (
@@ -76,7 +78,7 @@ const Register = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="file-upload" value="Profile Pic Upload (Optional)" />
                     </div>
-                    <FileInput id="file-upload" />
+                    <FileInput id="file-upload" {...register("pic")}/>
                 </div>
                 <div>
                     <div className="mb-2 block">
