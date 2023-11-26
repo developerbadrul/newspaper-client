@@ -2,7 +2,7 @@ import { Footer } from "flowbite-react";
 
 const MyFooter = () => {
     return (
-        <Footer container>
+      <Footer container>
       <div className="w-full text-center">
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
           <Footer.Brand
