@@ -5,12 +5,13 @@ import AllPublisher from "./Layout/AllPublisher/AllPublisher";
 import Plans from "./Layout/Plans/Plans";
 import Login from "./Layout/Login/Login";
 import Register from "./Layout/Register/Register";
+import ErrorPage from "./Layout/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <App></App>,
-        errorElement: <div>404</div>,
+        errorElement: <ErrorPage></ErrorPage>,
         children:[
             {
                 path:"/",

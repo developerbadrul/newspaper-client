@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { IoIosHome } from "react-icons/io";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import SocialMediaLogin from "../../components/SocialMediaLogin/SocialMediaLogin";
 
 const Login = () => {
-    const {singInWithPassword} = useAuth();
+    const { singInWithPassword } = useAuth();
     const {
         register,
         handleSubmit,
@@ -15,8 +16,8 @@ const Login = () => {
 
     const onSubmit = (logingData) => {
         singInWithPassword(logingData.email, logingData.password)
-        .then(result => console.log(result.user))
-        .catch(err =>console.log(err.message))
+            .then(result => console.log(result.user))
+            .catch(err => console.log(err.message))
     };
 
 
@@ -88,7 +89,8 @@ const Login = () => {
                     )}
                 </div> */}
                 <Button type="submit">Login</Button>
-                <p>
+                <SocialMediaLogin className="w-full"></SocialMediaLogin>
+                <p className="font-bold">
                     New User?{" "}
                     <Link to="/register" className="text-cyan-600 hover:underline dark:text-cyan-500">
                         Register First

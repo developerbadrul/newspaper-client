@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { getAuth, updateProfile } from "firebase/auth";
+import SocialMediaLogin from "../../components/SocialMediaLogin/SocialMediaLogin";
 
 const Register = () => {
     const auth = getAuth()
@@ -21,7 +22,7 @@ const Register = () => {
         console.log(registerUserInfo);
         createUserWithPassword(registerUserInfo.email, registerUserInfo.password)
             .then(result => {
-                updateProfile(auth.currentUser,{
+                updateProfile(auth.currentUser, {
                     displayName: registerUserInfo.name,
                 })
                 console.log(result.user)
@@ -78,7 +79,7 @@ const Register = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="file-upload" value="Profile Pic Upload (Optional)" />
                     </div>
-                    <FileInput id="file-upload" {...register("pic")}/>
+                    <FileInput id="file-upload" {...register("pic")} />
                 </div>
                 <div>
                     <div className="mb-2 block">
@@ -121,7 +122,8 @@ const Register = () => {
                     )}
                 </div>
                 <Button type="submit">Register</Button>
-                <p>
+                <SocialMediaLogin></SocialMediaLogin>
+                <p className="font-bold">
                     Already Register?{" "}
                     <Link to="/login" className="text-cyan-600 hover:underline dark:text-cyan-500">
                         Please Login
