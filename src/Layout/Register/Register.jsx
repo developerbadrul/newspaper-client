@@ -1,8 +1,13 @@
 import { Button, FileInput, Label, TextInput } from "flowbite-react";
+import { IoIosHome } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { getAuth, updateProfile } from "firebase/auth";
 
 const Register = () => {
+    const auth = getAuth()
+    const { createUserWithPassword } = useAuth();
     const {
         register,
         handleSubmit,
@@ -10,12 +15,24 @@ const Register = () => {
         watch,
     } = useForm();
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (registerUserInfo) => {
+        createUserWithPassword(registerUserInfo.email, registerUserInfo.password)
+            .then(result => {
+                updateProfile(auth.currentUser,{
+                    displayName: registerUserInfo.name,
+                })
+                console.log(result.user)
+            })
+            .catch(err => console.log(err.message))
+    };
 
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
+
     return (
         <div className="my-8">
+            <Link to="/"><Button color="failure" className="mx-7 font-bold"> <span className="mr-2 text-xl"><IoIosHome /></span> Go Home</Button>
+            </Link>
             <h1 className="text-center text-3xl text-cyan-700 font-bold">
                 Registration Please !!!
             </h1>
@@ -101,7 +118,7 @@ const Register = () => {
                         <p role="alert" className="text-red-700">{errors.confirmPassword.message}</p>
                     )}
                 </div>
-                <Button type="submit">Login</Button>
+                <Button type="submit">Register</Button>
                 <p>
                     Already Register?{" "}
                     <Link to="/login" className="text-cyan-600 hover:underline dark:text-cyan-500">

@@ -1,5 +1,6 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
+import { IoIosHome } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -15,6 +16,8 @@ const Login = () => {
 
     return (
         <div className="my-8">
+            <Link to="/"><Button color="failure" className="mx-7 font-bold"> <span className="mr-2 text-xl"><IoIosHome /></span> Go Home</Button>
+            </Link>
             <h1 className="text-center text-3xl text-cyan-700 font-bold">
                 Please Login
             </h1>
