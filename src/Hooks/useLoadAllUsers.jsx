@@ -4,7 +4,7 @@ import useAxiousPrivate from "./useAxiousPrivate";
 
 const useLoadAllUsers = () => {
     const axiousPrivate = useAxiousPrivate();
-    const { data: users, refetch } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
             const res = await axiousPrivate.get("/users")
