@@ -1,6 +1,6 @@
 
 import { Sidebar } from "keep-react";
-import { Article, ChartBar, Chat, GraduationCap, Handbag, LockKey, ShoppingBagOpen, ShoppingCart, Signpost, SquaresFour, TreeStructure, User, Users } from "phosphor-react";
+import { Article, ChartBar,  LockKey,  Signpost, SquaresFour, TreeStructure, User } from "phosphor-react";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -42,7 +42,7 @@ const Dashboard = () => {
                     </Sidebar.ItemGroup>
                 </Sidebar>
             </div>
-            <div><Outlet></Outlet></div>
+            <div className="flex-1 my-6"><Outlet></Outlet></div>
         </div>
     );
 };
