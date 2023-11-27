@@ -6,6 +6,10 @@ import Plans from "./Layout/Plans/Plans";
 import Login from "./Layout/Login/Login";
 import Register from "./Layout/Register/Register";
 import ErrorPage from "./Layout/ErrorPage/ErrorPage";
+import Dashboard from "./Layout/Dashboard/Dashboard";
+import AllUsers from "./Layout/Dashboard/AllUsers";
+import AllArticles from "./Layout/Dashboard/AllArticles";
+import AddPublisher from "./Layout/Dashboard/AddPublisher";
 
 export const router = createBrowserRouter([
     {
@@ -14,7 +18,7 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage></ErrorPage>,
         children:[
             {
-                path:"/",
+                index:"/",
                 element: <Home></Home>
             },
             {
@@ -24,6 +28,24 @@ export const router = createBrowserRouter([
             {
                 path:"plans",
                 element: <Plans></Plans>
+            },
+        ]
+    },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children:[
+            {
+                path: "all-users",
+                element: <AllUsers></AllUsers>
+            },
+            {
+                path: "all-articles",
+                element: <AllArticles></AllArticles>
+            },
+            {
+                path: "add-publisher",
+                element: <AddPublisher></AddPublisher>
             },
         ]
     },

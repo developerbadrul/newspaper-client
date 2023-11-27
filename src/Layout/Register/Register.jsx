@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { getAuth, updateProfile } from "firebase/auth";
 import SocialMediaLogin from "../../components/SocialMediaLogin/SocialMediaLogin";
+import useAxiousPublic from "../../Hooks/useAxiousPublic";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const auth = getAuth()
@@ -17,7 +19,7 @@ const Register = () => {
     } = useForm();
 
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
+    const axiousPublic = useAxiousPublic();
     const onSubmit = (registerUserInfo) => {
         console.log(registerUserInfo);
         createUserWithPassword(registerUserInfo.email, registerUserInfo.password)
@@ -25,6 +27,25 @@ const Register = () => {
                 updateProfile(auth.currentUser, {
                     displayName: registerUserInfo.name,
                 })
+                const userInfo = {
+                    name: registerUserInfo.name,
+                    email: registerUserInfo.email
+                }
+
+                axiousPublic.post("/users", userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user added to the database')
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'User created successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    })
+
                 console.log(result.user)
             })
             .catch(err => console.log(err.message))

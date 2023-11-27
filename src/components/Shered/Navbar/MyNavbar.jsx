@@ -39,7 +39,7 @@ const MyNavbar = () => {
         <NavLink to="/">Add Articles</NavLink>
         <NavLink to="/">All Articles</NavLink>
         <NavLink to="/">Subscription</NavLink>
-        <NavLink to="/">Dashboard</NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/">My Articles</NavLink>
         <NavLink to="/">Premium Articles</NavLink>
         <NavLink to="plans">Plans</NavLink>
