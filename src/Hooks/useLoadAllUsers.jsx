@@ -7,7 +7,11 @@ const useLoadAllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await axiousPrivate.get("/users")
+            const res = await axiousPrivate.get("/users", {
+                headers:{
+                    authorization: `Bearer ${localStorage.getItem("access-token")}`
+                }
+            })
             return res.data;
         }
     })
