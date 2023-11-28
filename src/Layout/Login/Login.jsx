@@ -4,9 +4,9 @@ import { IoIosHome } from "react-icons/io";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import SocialMediaLogin from "../../components/SocialMediaLogin/SocialMediaLogin";
+import Swal from "sweetalert2";
 
 const Login = () => {
-    const { singInWithPassword } = useAuth();
     const {
         register,
         handleSubmit,
@@ -14,9 +14,25 @@ const Login = () => {
     } = useForm();
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
+    const { singInWithPassword } = useAuth();
+
+
     const onSubmit = (logingData) => {
+        console.log(logingData.email, logingData.password);
         singInWithPassword(logingData.email, logingData.password)
-            .then(result => console.log(result.user))
+            .then(result => {
+                Swal.fire({
+                    title: 'User Login Successful.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+
+                });
+                console.log(result.user);
+            })
             .catch(err => console.log(err.message))
     };
 
