@@ -7,6 +7,7 @@ import useAxiousPublic from "../Hooks/useAxiousPublic";
 export const AuthContex = createContext(null)
 
 const AuthProvider = ({ children }) => {
+    const [loading, setLoading] = useState(true);
     const [currentUser, setCurrentUser] = useState(null)
     const auth = getAuth(firebaseApp)
     const axiousPublic = useAxiousPublic();
@@ -14,18 +15,22 @@ const AuthProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
 
     const createUserWithPassword = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const singInWithPassword = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     const googleSignIn = () => {
+        setLoading(true);
         return signInWithPopup(auth, googleProvider)
     }
 
     const logOut = () => {
+        setLoading(true);
         return signOut(auth)
     }
 
@@ -39,11 +44,12 @@ const AuthProvider = ({ children }) => {
                     .then(res => {
                         if (res.data.token) {
                             localStorage.setItem("access-token", res.data.token)
-                        }
-                        else {
-                            localStorage.removeItem("access-token")
+                            setLoading(false);
                         }
                     })
+            } else {
+                localStorage.removeItem('access-token');
+                setLoading(false);
             }
         });
         return () => {
@@ -52,6 +58,7 @@ const AuthProvider = ({ children }) => {
     }, [auth, axiousPublic])
 
     const value = {
+        loading,
         currentUser,
         createUserWithPassword,
         singInWithPassword,

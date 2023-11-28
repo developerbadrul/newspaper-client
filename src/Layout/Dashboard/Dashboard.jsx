@@ -2,8 +2,11 @@
 import { Sidebar } from "keep-react";
 import { Article, ChartBar,  LockKey,  Signpost, SquaresFour, TreeStructure, User } from "phosphor-react";
 import { NavLink, Outlet } from "react-router-dom";
+import useLoadAdmin from "../../Hooks/useLoadAdmin";
 
 const Dashboard = () => {
+    const [isAdmin, isAdminLoading] = useLoadAdmin();
+    console.log("isAdmin", isAdmin, "isAdminLoading", isAdminLoading);
     return (
         <div className="flex w-11/12 mx-auto">
             <div className="bg-green-400">
