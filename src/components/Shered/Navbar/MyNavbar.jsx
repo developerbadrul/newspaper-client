@@ -1,6 +1,7 @@
 import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css"
+import Logo from "../../../assets/img/logo-removebg-preview.png"
 import useAuth from "../../../Hooks/useAuth";
 
 
@@ -10,10 +11,13 @@ const MyNavbar = () => {
   // const hangle
   return (
     <Navbar fluid rounded>
-      <Navbar.Brand href="https://flowbite-react.com">
-        <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Flowbite React</span>
+
+      <Navbar.Brand >
+        <Link to="/">
+          <img  src={Logo} className="mr-3 md:w-7/12" alt="Flowbite React Logo" />
+        </Link>
       </Navbar.Brand>
+
       <div className="flex md:order-2">
         <Dropdown
           arrowIcon={false}
