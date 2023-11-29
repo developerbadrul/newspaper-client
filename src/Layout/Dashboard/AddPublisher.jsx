@@ -1,5 +1,9 @@
 import { Button, FileInput, Label, TextInput, Textarea } from "flowbite-react";
 import { useForm } from "react-hook-form";
+import useAxiousPublic from "../../Hooks/useAxiousPublic";
+import axios from "axios";
+import { data } from "autoprefixer";
+import useAxiousPrivate from "../../Hooks/useAxiousPrivate";
 
 const AddPublisher = () => {
     const {
@@ -9,7 +13,32 @@ const AddPublisher = () => {
         watch,
     } = useForm();
 
-    const onSubmit = (data) => console.log(data)
+    const axiousPublic = useAxiousPublic();
+    const axiousPrivate = useAxiousPrivate();
+    const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
+    const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        const imageFile = { image: data.image[0] }
+        console.log(imageFile);
+        const res = await axiousPublic.post(img_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+        if (res.data.success) {
+            const publisherData = {
+                name: data.name,
+                address: data.address,
+                logo: res?.data?.data?.display_url,
+                role: "publisher"
+            }
+            const newPublisher = await axiousPrivate.post("/users", publisherData)
+            console.log(newPublisher.data);
+        }
+        console.log(res);
+    }
 
     return (
         <div>
@@ -31,9 +60,9 @@ const AddPublisher = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="file-upload" value="Publisher Logo Upload" />
                     </div>
-                    <FileInput {...register("logo")} id="file-upload" />
+                    <FileInput {...register("image")} id="file-upload" />
                 </div>
-                <Button className="w-11/12 my-7 mx-auto font-bold"><input type="submit" value="Add Publisher" /></Button>
+                <input className="w-11/12 my-7 mx-auto font-bold btn bg-cyan-500 p-3 rounded-md block text-white" type="submit" value="Add Publisher" />
             </form>
         </div>
     );

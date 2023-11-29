@@ -7,7 +7,7 @@ const useLoadAllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            console.log("load all users working");
+            // console.log("load all users working");
             const res = await axiousPrivate.get("/users")
             return res.data;
         }
