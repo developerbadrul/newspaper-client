@@ -20,8 +20,19 @@ const Register = () => {
 
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const axiousPublic = useAxiousPublic();
-    const onSubmit = (registerUserInfo) => {
+    const onSubmit = async (registerUserInfo) => {
         console.log(registerUserInfo);
+        const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
+        const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
+
+        const imageFile = { image: registerUserInfo?.image[0] }
+        console.log(imageFile);
+        const res = await axiousPublic.post(img_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+        console.log("after upload pic",res);
         createUserWithPassword(registerUserInfo.email, registerUserInfo.password)
             .then(result => {
                 updateProfile(auth.currentUser, {
@@ -29,7 +40,8 @@ const Register = () => {
                 })
                 const userInfo = {
                     name: registerUserInfo.name,
-                    email: registerUserInfo.email
+                    email: registerUserInfo.email,
+                    pic: res.data.data.display_url,
                 }
 
                 axiousPublic.post("/users", userInfo)
@@ -100,7 +112,7 @@ const Register = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="file-upload" value="Profile Pic Upload (Optional)" />
                     </div>
-                    <FileInput {...register("name", { required: true })} id="file-upload" {...register("pic")} />
+                    <FileInput id="file-upload" {...register("image")} />
                 </div>
                 <div>
                     <div className="mb-2 block">

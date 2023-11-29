@@ -1,16 +1,14 @@
-import { Button, FileInput, Label, TextInput, Textarea } from "flowbite-react";
+import { FileInput, Label, TextInput, Textarea } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import useAxiousPublic from "../../Hooks/useAxiousPublic";
-import axios from "axios";
-import { data } from "autoprefixer";
 import useAxiousPrivate from "../../Hooks/useAxiousPrivate";
+import Swal from "sweetalert2";
 
 const AddPublisher = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
-        watch,
+        reset
     } = useForm();
 
     const axiousPublic = useAxiousPublic();
@@ -31,11 +29,22 @@ const AddPublisher = () => {
             const publisherData = {
                 name: data.name,
                 address: data.address,
-                logo: res?.data?.data?.display_url,
+                logo: res.data.data.display_url,
                 role: "publisher"
             }
-            const newPublisher = await axiousPrivate.post("/users", publisherData)
-            console.log(newPublisher.data);
+
+            const newPublisher = await axiousPrivate.post("/users/publisher", publisherData)
+            console.log("after add new publisher", newPublisher);
+            if(newPublisher.data.insertedId){
+                reset();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${data.name} is added to the menu.`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
         }
         console.log(res);
     }

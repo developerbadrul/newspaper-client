@@ -62,6 +62,7 @@ const AllUsers = () => {
                         <Table.HeadCell>Name</Table.HeadCell>
                         <Table.HeadCell>Email</Table.HeadCell>
                         <Table.HeadCell>Role</Table.HeadCell>
+                        <Table.HeadCell>Make Admin</Table.HeadCell>
                         <Table.HeadCell>
                             <span className="sr-only">Edit</span>
                         </Table.HeadCell>
@@ -70,12 +71,15 @@ const AllUsers = () => {
                         {
                             users.map(user => <Table.Row key={user._id} user={user} className="bg-white font-bold dark:border-gray-700 dark:bg-gray-800">
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                    <img src={user?.pic || dummyUser} alt="" width="30px" />
+                                    <img className="rounded-full" src={user?.pic || user?.logo || dummyUser} alt="" width="30px" />
                                 </Table.Cell>
                                 <Table.Cell>{user.name}</Table.Cell>
                                 <Table.Cell>{user.email}</Table.Cell>
                                 <Table.Cell>
-                                    {user?.role === "admin" ? "Admin" : <Button onClick={() => handleMakeAdmin(user)} gradientMonochrome="success">Make Admin</Button>}
+                                    {user?.role}
+                                </Table.Cell>
+                                <Table.Cell>
+                                    {user?.role === "admin" ? "Done" : <Button onClick={() => handleMakeAdmin(user)} gradientMonochrome="success">Make Admin</Button>}
                                 </Table.Cell>
                                 <Table.Cell>
                                     <Button color="white" pill onClick={() => handleDeleteUser(user)}>
