@@ -100,7 +100,7 @@ const Register = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="file-upload" value="Profile Pic Upload (Optional)" />
                     </div>
-                    <FileInput id="file-upload" {...register("pic")} />
+                    <FileInput {...register("name", { required: true })} id="file-upload" {...register("pic")} />
                 </div>
                 <div>
                     <div className="mb-2 block">
