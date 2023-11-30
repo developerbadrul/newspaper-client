@@ -2,7 +2,7 @@ import Container from "../../components/Container/Container";
 import CountUsers from "../../components/CountUsers/CountUsers";
 import TrandingNews from "../../components/Tranding News/TrandingNews";
 import AllPublisher from "../AllPublisher/AllPublisher";
-import Plans from "../Plans/Plans";
+import Plans from "../Plans/Plans";  
 const Home = () => {
     return (
         <div>
