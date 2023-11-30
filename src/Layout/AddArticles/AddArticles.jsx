@@ -89,6 +89,7 @@ const AddArticles = () => {
 
     return (
         <div>
+            <h2 className="text-center font-bold my-4 text-cyan-500 text-3xl underline">Add New Articles</h2>
             <form className="flex max-w-md flex-col gap-4 mx-auto" onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <div className="mb-2 block">
