@@ -17,7 +17,7 @@ const Register = () => {
         formState: { errors },
         watch,
     } = useForm();
-
+    
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const axiousPublic = useAxiousPublic();
     const onSubmit = async (registerUserInfo) => {

@@ -10,6 +10,7 @@ import Dashboard from "./Layout/Dashboard/Dashboard";
 import AllUsers from "./Layout/Dashboard/AllUsers";
 import AllArticles from "./Layout/Dashboard/AllArticles";
 import AddPublisher from "./Layout/Dashboard/AddPublisher";
+import AddArticle from "./Layout/AddArticles/AddArticles";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,14 @@ export const router = createBrowserRouter([
             {
                 index:"/",
                 element: <Home></Home>
+            },
+            {
+                path:"add-articles",
+                element: <AddArticle></AddArticle>
+            },
+            {
+                path:"all-articles",
+                element: <AllArticles></AllArticles>
             },
             {
                 path:"all-publisher",

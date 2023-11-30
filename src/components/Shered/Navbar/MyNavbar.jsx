@@ -14,7 +14,7 @@ const MyNavbar = () => {
 
       <Navbar.Brand >
         <Link to="/">
-          <img  src={Logo} className="mr-3 md:w-7/12" alt="Flowbite React Logo" />
+          <img  src={Logo} className="mr-3 md:w-9/12" alt="Flowbite React Logo" />
         </Link>
       </Navbar.Brand>
 
@@ -40,14 +40,12 @@ const MyNavbar = () => {
       </div>
       <Navbar.Collapse id="mynav">
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/">Add Articles</NavLink>
-        <NavLink to="/">All Articles</NavLink>
+        <NavLink to="/add-articles">Add Articles</NavLink>
+        <NavLink to="/all-articles">All Articles</NavLink>
         <NavLink to="/">Subscription</NavLink>
         <NavLink to="/dashboard">Dashboard</NavLink>
         <NavLink to="/">My Articles</NavLink>
         <NavLink to="/">Premium Articles</NavLink>
-        <NavLink to="plans">Plans</NavLink>
-        <NavLink to="all-publisher">All Publisher</NavLink>
         <NavLink to="login">Login</NavLink>
         {currentUser && <Button color="failure" onClick={logOut}>LoginOut</Button>}
         {/* <Navbar.Link href="#">About</Navbar.Link>
