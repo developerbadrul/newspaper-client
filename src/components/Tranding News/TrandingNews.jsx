@@ -1,11 +1,19 @@
 import { Button } from "flowbite-react";
 import Marquee from "react-fast-marquee";
+import useLoadArticals from "../../Hooks/useLoadArticals";
+
 const TrandingNews = () => {
+    const [articles] = useLoadArticals();
+
     return (
         <div className="flex">
-            <Button color="success">Success</Button>
+            <Button color="success" >TrandingNews</Button>
             <Marquee>
-                I can be a React component, multiple React components, or just some text.
+                {articles?.map((article) => (
+                    <div key={article?._id}>
+                        <p className="mx-4 text-green-600 font-semibold">{article?.title}</p>
+                    </div>
+                ))}
             </Marquee>
         </div>
     );

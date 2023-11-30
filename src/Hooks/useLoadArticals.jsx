@@ -3,7 +3,7 @@ import useAxiousPublic from "./useAxiousPublic";
 
 const useLoadArticals = () => {
     const axiousPublic = useAxiousPublic();
-    const { data: articles, } = useQuery({
+    const { data: articles = [], } = useQuery({
         queryKey: ["articals"],
         queryFn: async () => {
             const res = await axiousPublic.get("/allartical");

@@ -7,10 +7,11 @@ const Home = () => {
     return (
         <div>
             <Container>
-                this is home layout
                 <TrandingNews></TrandingNews>
-                <AllPublisher></AllPublisher>
-                <CountUsers></CountUsers>
+                <div className="grid grid-cols-1 md:grid-cols-2 space-x-5">
+                    <AllPublisher></AllPublisher>
+                    <CountUsers></CountUsers>
+                </div>
                 <Plans></Plans>
             </Container>
         </div>
