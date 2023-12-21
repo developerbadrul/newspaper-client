@@ -18,7 +18,7 @@ const MyFooter = () => {
           </Footer.LinkGroup>
         </div>
         <Footer.Divider />
-        <Footer.Copyright href="#" by="Flowbite™" year={2023} />
+        <Footer.Copyright href="#" by="National News™" year={2023} />
       </div>
     </Footer>
     );

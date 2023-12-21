@@ -13,9 +13,9 @@ const AllPublisher = () => {
     }, [axiousPublic])
 
     return (
-        <div>
+        <div className="mx-auto">
             <h2 className="text-center font-bold my-4 text-cyan-500 text-3xl underline">All Publisher</h2>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
                 {publishers.map(publisher => <Card key={publisher._id} publisher={publisher}
                     className="!max-w-xs overflow-hidden rounded-md md:!max-w-[478px]"
                     imgSrc={publisher?.logo}

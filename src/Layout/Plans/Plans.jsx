@@ -7,7 +7,7 @@ const Plans = () => {
     return (
         <div className="my-6">
             <h2 className="text-2xl font-bold text-center text-cyan-500 my-5 underline">Plans</h2>
-            <div className="flex gap-7 items-center justify-center">
+            <div className="flex flex-col md:flex-row gap-7 items-center justify-center">
                 <div>
                     <Card className="max-w-xs p-6">
                         <Card.Container>

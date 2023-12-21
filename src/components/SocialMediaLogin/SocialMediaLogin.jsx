@@ -3,10 +3,13 @@ import { IoLogoGoogle } from "react-icons/io5";
 import useAuth from "../../Hooks/useAuth";
 import useAxiousPublic from "../../Hooks/useAxiousPublic";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const SocialMediaLogin = () => {
     const { googleSignIn } = useAuth();
     const axiousPublic = useAxiousPublic();
+    const navigate = useNavigate()
+
 
     const handleGoogleSignIn = () => {
         googleSignIn()
@@ -19,7 +22,7 @@ const SocialMediaLogin = () => {
                 console.log(userInfo);
                 axiousPublic.post("/users", userInfo)
                     .then(res => console.log(res.data))
-               
+                    navigate(location?.state ? location.state : "/"),
                     Swal.fire({
                         title: 'User Login Successful.',
                         showClass: {

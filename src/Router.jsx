@@ -11,6 +11,7 @@ import AllUsers from "./Layout/Dashboard/AllUsers";
 import AllArticles from "./Layout/Dashboard/AllArticles";
 import AddPublisher from "./Layout/Dashboard/AddPublisher";
 import AddArticle from "./Layout/AddArticles/AddArticles";
+import PrivateRoute from "./Router/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -24,29 +25,29 @@ export const router = createBrowserRouter([
             },
             {
                 path:"add-articles",
-                element: <AddArticle></AddArticle>
+                element: <PrivateRoute><AddArticle></AddArticle></PrivateRoute>
             },
             {
                 path:"all-articles",
-                element: <AllArticles></AllArticles>
+                element: <PrivateRoute><AllArticles></AllArticles></PrivateRoute>
             },
             {
                 path:"all-publisher",
-                element: <AllPublisher></AllPublisher>
+                element: <PrivateRoute><AllPublisher></AllPublisher></PrivateRoute>
             },
             {
                 path:"plans",
-                element: <Plans></Plans>
+                element: <PrivateRoute><Plans></Plans></PrivateRoute>
             },
         ]
     },
     {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children:[
             {
                 path: "all-users",
-                element: <AllUsers></AllUsers>
+                element: <PrivateRoute><AllUsers></AllUsers></PrivateRoute>
             },
             {
                 path: "all-articles",

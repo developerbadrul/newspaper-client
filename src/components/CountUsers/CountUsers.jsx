@@ -24,7 +24,7 @@ const CountUsers = () => {
 
     useEffect(() => {
         axiousPublic.get("/users/premium")
-            .then(res => setPremiumUser(res.data.userCount))
+            .then(res => setPremiumUser(res.data.premiumUserCount))
     }, [axiousPublic])
 
 
